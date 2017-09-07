@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.GUI", "OrderTestWPF\Order.GUI.csproj", "{B2F90BD8-FE86-4E61-82BD-9A7D858EFEC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.Core", "Order.Core\Order.Core.csproj", "{CAF083DF-F1B9-497B-8DC1-ACBF8EBE0FFF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2F90BD8-FE86-4E61-82BD-9A7D858EFEC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2F90BD8-FE86-4E61-82BD-9A7D858EFEC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2F90BD8-FE86-4E61-82BD-9A7D858EFEC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2F90BD8-FE86-4E61-82BD-9A7D858EFEC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAF083DF-F1B9-497B-8DC1-ACBF8EBE0FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAF083DF-F1B9-497B-8DC1-ACBF8EBE0FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAF083DF-F1B9-497B-8DC1-ACBF8EBE0FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAF083DF-F1B9-497B-8DC1-ACBF8EBE0FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {687A1C9F-D08B-4F1F-9A97-8ACB094B7481}
+	EndGlobalSection
+EndGlobal
