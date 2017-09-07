@@ -2,6 +2,7 @@
 using Order.Core.Interfaces;
 using OrderTestWPF.Command;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using EntityOrder = Order.Core.Entity.Order;
@@ -175,6 +176,8 @@ namespace OrderTestWPF.ViewModel
         {
             get
             {
+                if (CurrentUser.Orders == null)
+                    CurrentUser.Orders = new List<EntityOrder>();
                 return new ObservableCollection<EntityOrder>(CurrentUser.Orders);
             }
             set
