@@ -10,13 +10,19 @@ namespace Order.Core.Entity
         public Int32 Id { get; set; }        
         public Int32 UserId { get; set; }
         public String Description { get; set; }
-        public String Error => throw new NotImplementedException();
+        public String Error
+        {
+            get
+            {
+                return null;
+            }
+        }
 
         public String this[String columnName]
         {
             get
             {
-                String error = String.Empty;
+                String error = null;
                 switch (columnName)
                 {
                     case "Description":

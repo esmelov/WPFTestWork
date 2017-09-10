@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrderTestWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500"    Width="800"
-                           MinHeight="500" MinWidth="800">
+        Title="CRM" Height="500"    Width="800"
+                    MinHeight="500" MinWidth="800">
     <Window.Resources>
         <Style TargetType="{x:Type TextBox}">
             <Style.Triggers>
@@ -187,11 +187,10 @@
             <Label Grid.Column="0" Grid.Row="1" VerticalAlignment="Top" Content="Описание: "/>
             <TextBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" Margin="0 5 0 0">
                 <TextBox.Text>
-                    <Binding Path="CurrentOrder.Description" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
-                        <Binding.ValidationRules>
-                            <DataErrorValidationRule />
-                        </Binding.ValidationRules>
-                    </Binding>
+                    <Binding Path="CurrentOrder.Description" 
+                             ValidatesOnDataErrors="True"
+                             UpdateSourceTrigger="PropertyChanged"
+                             NotifyOnValidationError="True"/>
                 </TextBox.Text>
             </TextBox>
         </Grid>

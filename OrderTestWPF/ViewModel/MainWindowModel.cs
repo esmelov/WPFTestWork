@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows;
 using EntityOrder = Order.Core.Entity.Order;
 
 namespace OrderTestWPF.ViewModel
@@ -33,14 +34,21 @@ namespace OrderTestWPF.ViewModel
                                     {
                                         if (obj is User curUser)
                                         {
-                                            ObservableCollection<EntityOrder> tmpColl = OrdersObservableCollection;
-                                            EntityOrder tmpOrder = new EntityOrder()
+                                            try
                                             {
-                                                UserId = curUser.Id,
-                                                Description="<Введите описание товара>"
-                                            };
-                                            tmpColl.Add(tmpOrder);
-                                            OrdersObservableCollection = tmpColl;
+                                                ObservableCollection<EntityOrder> tmpColl = OrdersObservableCollection;
+                                                EntityOrder tmpOrder = new EntityOrder()
+                                                {
+                                                    UserId = curUser.Id,
+                                                    Description = "<Введите описание товара>"
+                                                };
+                                                tmpColl.Add(tmpOrder);
+                                                OrdersObservableCollection = tmpColl;
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                                            }
                                             OnPropertyChanged("OrdersObservableCollection");
                                         }
                                     }, obj =>
@@ -63,15 +71,23 @@ namespace OrderTestWPF.ViewModel
                     {
                         if (obj is EntityOrder curOrder)
                         {
-                            ObservableCollection<EntityOrder> tmpColl = OrdersObservableCollection;
-                            if (curOrder.Id == 0)
-                                tmpColl.Remove(curOrder);
-                            else
+                            try
                             {
-                                Int32 i = _userRepo.Delete(curOrder);
-                                tmpColl.Remove(curOrder);
+                                ObservableCollection<EntityOrder> tmpColl = OrdersObservableCollection;
+                                if (curOrder.Id == 0)
+                                    tmpColl.Remove(curOrder);
+                                else
+                                {
+                                    Int32 i = _userRepo.Delete(curOrder);
+                                    tmpColl.Remove(curOrder);
+                                }
+                                OrdersObservableCollection = tmpColl;
+                                MessageBox.Show($"Товар\r\n\"{curOrder.Description}\"\r\nудалён.", "Информация.", MessageBoxButton.OK, MessageBoxImage.Information);
                             }
-                            OrdersObservableCollection = tmpColl;
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                             OnPropertyChanged("OrdersObservableCollection");
                         }
                     }, obj => obj != null));
@@ -87,7 +103,15 @@ namespace OrderTestWPF.ViewModel
                     {
                         if (obj is EntityOrder curOrder)
                         {
-                            Int32 i = _userRepo.Save(curOrder);
+                            try
+                            {
+                                Int32 i = _userRepo.Save(curOrder);
+                                MessageBox.Show($"Товар\r\n\"{curOrder.Description}\"\r\nсохранён.", "Информация.", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                             OnPropertyChanged("CurrentOrder");
                         }
                     }, obj =>
@@ -108,8 +132,15 @@ namespace OrderTestWPF.ViewModel
                 return _addUser ??
                     (_addUser = new RelayCommand(obj =>
                     {
-                        UsersObservableCollection.Add(new User());
-                        OnPropertyChanged("UsersObservableCollection");
+                        try
+                        {
+                            UsersObservableCollection.Add(new User());
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+                OnPropertyChanged("UsersObservableCollection");
                     }));
             }
         }
@@ -123,12 +154,20 @@ namespace OrderTestWPF.ViewModel
                     {
                         if (obj is User curUser)
                         {
-                            if (curUser.Id == 0)
-                                UsersObservableCollection.Remove(curUser);
-                            else
+                            try
                             {
-                                int i = _userRepo.Delete(curUser);
-                                UsersObservableCollection.Remove(curUser);
+                                if (curUser.Id == 0)
+                                    UsersObservableCollection.Remove(curUser);
+                                else
+                                {
+                                    int i = _userRepo.Delete(curUser);
+                                    UsersObservableCollection.Remove(curUser);
+                                }
+                                MessageBox.Show("Пользователь удалён.", "Информация.", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
                             }
                         }
                     }, obj => obj != null));
@@ -144,7 +183,15 @@ namespace OrderTestWPF.ViewModel
                     {
                         if (obj is User curUsr)
                         {
-                            Int32 i = _userRepo.Save(curUsr);
+                            try
+                            {
+                                Int32 i = _userRepo.Save(curUsr);
+                                MessageBox.Show($"Пользователь\r\n{curUsr.Name}\r\nсохранён.", "Информация.", MessageBoxButton.OK, MessageBoxImage.Information);
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            }
                             OnPropertyChanged("CurrentUser");
                         }
                     }, obj => 
@@ -222,8 +269,16 @@ namespace OrderTestWPF.ViewModel
 
         public MainWindowModel(IRepository<User, EntityOrder> userRepository)
         {
-            _userRepo = userRepository;
-            UsersObservableCollection = new ObservableCollection<User>(_userRepo.GetContext);
+            try
+            {
+                _userRepo = userRepository;
+                UsersObservableCollection = new ObservableCollection<User>(_userRepo.GetContext);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Environment.Exit(-1);
+            }
         }
     }
 }

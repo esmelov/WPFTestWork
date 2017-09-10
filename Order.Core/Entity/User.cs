@@ -13,13 +13,19 @@ namespace Order.Core.Entity
         public String Adress { get; set; }
         public Boolean VIP { get; set; }        
         public IEnumerable<Order> Orders { get; set; }
-        public String Error => throw new NotImplementedException();
-        
+        public String Error
+        {
+            get
+            {
+                return null;
+            }
+        }
+
         public String this[string columnName]
         {
             get
             {
-                String error = String.Empty;
+                String error = null;
                 switch (columnName)
                 {
                     case "Name":

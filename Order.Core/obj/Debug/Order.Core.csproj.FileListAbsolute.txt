@@ -1,0 +1,10 @@
+d:\pers\Documents\Visual Studio 2017\Projects\OrderTestWPF\Order.Core\bin\Debug\Order.Core.dll.config
+d:\pers\Documents\Visual Studio 2017\Projects\OrderTestWPF\Order.Core\bin\Debug\Order.Core.dll
+d:\pers\Documents\Visual Studio 2017\Projects\OrderTestWPF\Order.Core\bin\Debug\Order.Core.pdb
+d:\pers\Documents\Visual Studio 2017\Projects\OrderTestWPF\Order.Core\bin\Debug\EntityFramework.dll
+d:\pers\Documents\Visual Studio 2017\Projects\OrderTestWPF\Order.Core\bin\Debug\EntityFramework.SqlServer.dll
+d:\pers\Documents\Visual Studio 2017\Projects\OrderTestWPF\Order.Core\bin\Debug\EntityFramework.xml
+d:\pers\Documents\Visual Studio 2017\Projects\OrderTestWPF\Order.Core\bin\Debug\EntityFramework.SqlServer.xml
+d:\pers\Documents\Visual Studio 2017\Projects\OrderTestWPF\Order.Core\obj\Debug\Order.Core.csproj.CoreCompileInputs.cache
+d:\pers\Documents\Visual Studio 2017\Projects\OrderTestWPF\Order.Core\obj\Debug\Order.Core.dll
+d:\pers\Documents\Visual Studio 2017\Projects\OrderTestWPF\Order.Core\obj\Debug\Order.Core.pdb
